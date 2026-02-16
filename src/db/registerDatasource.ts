@@ -2,7 +2,7 @@ import { injectable } from "@tsed/di";
 import { SQLITE_DATA_SOURCE } from "../model/di/tokens.js";
 import { dataSource } from "./DataSource.js";
 import type { Logger as TypeOrmLogger } from "typeorm/logger/Logger.js";
-import { $log } from "@tsed/common";
+import { $log } from "@tsed/logger";
 
 export function registerDatasource(): void {
     injectable(SQLITE_DATA_SOURCE).asyncFactory(async () => {

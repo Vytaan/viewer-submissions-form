@@ -38,7 +38,7 @@ export class SubmissionStatusModel extends AbstractModel {
         default: null,
     })
     @Name("additionalInfo")
-    @Description("Any additional info added by decino")
+    @Description("Any additional info added by Vytaan")
     @Optional()
     @Nullable(String)
     public additionalInfo?: string | null;

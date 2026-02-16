@@ -1,14 +1,14 @@
 import { Controller, Inject } from "@tsed/di";
 import { Delete, Get, Post, Returns, Security } from "@tsed/schema";
 import { StatusCodes } from "http-status-codes";
-import { PlatformResponse, QueryParams, Res } from "@tsed/common";
+import { PlatformResponse, Res } from "@tsed/platform-http";
+import { PathParams, QueryParams } from "@tsed/platform-params";
 import { SubmissionRoundModel } from "../../../model/db/SubmissionRound.model.js";
 import { SubmissionRoundService } from "../../../services/SubmissionRoundService.js";
 import { BaseRestController } from "../BaseRestController.js";
 import { SuccessModel } from "../../../model/rest/SuccessModel.js";
 import { BadRequest, NotFound } from "@tsed/exceptions";
 import { Authorize } from "@tsed/passport";
-import { PathParams } from "@tsed/platform-params";
 
 @Controller("/submissionRound")
 export class SubmissionRoundController extends BaseRestController {

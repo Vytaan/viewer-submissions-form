@@ -1,6 +1,6 @@
 import { Constant, Inject, OnInit, Service } from "@tsed/di";
 import { SubmissionModel } from "../model/db/Submission.model.js";
-import { Logger } from "@tsed/common";
+import { Logger } from "@tsed/logger";
 import GlobalEnv from "../model/constants/GlobalEnv.js";
 import { BotDownloadAuthenticationRepo } from "../db/repo/BotDownloadAuthenticationRepo.js";
 import { SubmissionRepo } from "../db/repo/SubmissionRepo.js";

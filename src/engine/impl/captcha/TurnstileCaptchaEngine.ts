@@ -4,7 +4,7 @@ import { CAPTCHA_ENGINE } from "../../../model/di/tokens.js";
 import CaptchaServices from "../../../model/constants/CaptchaServices.js";
 import GlobalEnv from "../../../model/constants/GlobalEnv.js";
 import { TurnstileResponse } from "../../../utils/typeings.js";
-import { Logger } from "@tsed/common";
+import { Logger } from "@tsed/logger";
 
 @Injectable({
     scope: ProviderScope.SINGLETON,

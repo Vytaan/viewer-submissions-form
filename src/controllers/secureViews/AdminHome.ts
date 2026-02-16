@@ -3,7 +3,7 @@ import { Get, Security, View } from "@tsed/schema";
 import { SubmissionRoundService } from "../../services/SubmissionRoundService.js";
 import { SubmissionRoundResultService } from "../../services/SubmissionRoundResultService.js";
 import { Authorize } from "@tsed/passport";
-import { Req } from "@tsed/common";
+import { Req } from "@tsed/platform-http";
 import { CustomUserInfoModel } from "../../model/auth/CustomUserInfoModel.js";
 import { AdminDto } from "../../DTO/ejs/AdminDto.js";
 import { WadValidationService } from "../../services/WadValidationService.js";

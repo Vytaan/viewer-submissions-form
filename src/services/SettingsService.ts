@@ -1,7 +1,7 @@
 import { Configuration, Constant, Inject, OnInit, Service } from "@tsed/di";
 import SETTING from "../model/constants/Settings.js";
 import GlobalEnv, { isMandatory } from "../model/constants/GlobalEnv.js";
-import { Logger } from "@tsed/common";
+import { Logger } from "@tsed/logger";
 import { SettingsRepo } from "../db/repo/SettingsRepo.js";
 import { SettingsMap } from "../utils/typeings.js";
 import { SettingsModel } from "../model/db/Settings.model.js";

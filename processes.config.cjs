@@ -1,7 +1,7 @@
 module.exports = [
     {
         script: "./dist/index.js",
-        name: "decinosubmissionbackend",
+        name: "vytaansubmissionbackend",
         time: true,
         source_map_support: true,
         watch: false,

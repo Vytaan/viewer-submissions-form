@@ -1,21 +1,23 @@
-FROM node:lts as base
+FROM node:lts AS base
 
 WORKDIR /home/node/app
 
 COPY package*.json ./
 
-RUN npm i
+RUN npm ci
 
 COPY . .
 
-FROM base as production
-
-ENV NODE_PATH=./dist
+FROM base AS production
 
 RUN npm run build
 
-EXPOSE 8081
-ENV PORT 8081
-ENV NODE_ENV production
+RUN chmod +x entrypoint.sh
 
-CMD [ "npm", "run" ,"start:prod" ]
+ENV NODE_ENV=production
+
+EXPOSE 2000
+
+VOLUME /data
+
+ENTRYPOINT ["./entrypoint.sh"]

@@ -4,7 +4,7 @@ import argon2 from "argon2";
 import { CustomUserInfoModel } from "../model/auth/CustomUserInfoModel.js";
 import { Unauthorized } from "@tsed/exceptions";
 import { UserRepo } from "../db/repo/UserRepo.js";
-import { AfterInit } from "@tsed/common";
+import { AfterInit } from "@tsed/platform-http";
 import crypto from "node:crypto";
 import { Logger } from "@tsed/logger";
 

@@ -1,16 +1,18 @@
-version: '3.8'
 services:
-  server:
+  vytaan-submissions:
     build:
       context: .
-      dockerfile: ./Dockerfile
-      args:
-        - http_proxy
-        - https_proxy
-        - no_proxy
-    image: tsed/server:latest
-    restart: always
+      target: production
     ports:
-      - "8081:8081"
-    stdin_open: true  # -i
-    tty: true         # -t
+      - "2000:2000"
+    env_file:
+      - .env
+    environment:
+      - PORT=0.0.0.0:2000
+      - NODE_ENV=production
+    volumes:
+      - sqlite-data:/data
+    restart: unless-stopped
+
+volumes:
+  sqlite-data:

@@ -1,6 +1,5 @@
 import { Configuration, Constant, Inject } from "@tsed/di";
-import type { BeforeRoutesInit } from "@tsed/common";
-import { PlatformApplication } from "@tsed/common";
+import { BeforeRoutesInit, PlatformApplication } from "@tsed/platform-http";
 import "@tsed/platform-express";
 import "@tsed/ajv";
 import "@tsed/swagger";
@@ -48,7 +47,7 @@ const opts: Partial<TsED.Configuration> = {
     ...config,
     acceptMimes: ["application/json"],
     httpPort: process.env.PORT ?? 8083,
-    httpsPort: ((): number | boolean => {
+    httpsPort: ((): string | number | false => {
         if (process.env.HTTPS === "true") {
             return Number.parseInt(process.env.HTTPS_PORT as string);
         }

@@ -1,5 +1,6 @@
 import "reflect-metadata";
-import { $log, PlatformBuilder } from "@tsed/common";
+import { PlatformBuilder } from "@tsed/platform-http";
+import { logger } from "@tsed/di";
 import { PlatformExpress } from "@tsed/platform-express";
 import { Server } from "./Server.js";
 import process from "process";
@@ -21,7 +22,7 @@ async function bootstrap(): Promise<void> {
         });
         await stopOnTest(platform, false);
     } catch (error) {
-        $log.error({ event: "SERVER_BOOTSTRAP_ERROR", message: error.message, stack: error.stack });
+        logger().error({ event: "SERVER_BOOTSTRAP_ERROR", message: error.message, stack: error.stack });
         await stopOnTest(platform, true);
     }
 }

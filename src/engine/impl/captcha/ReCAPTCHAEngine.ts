@@ -3,7 +3,7 @@ import CaptchaServices from "../../../model/constants/CaptchaServices.js";
 import { ReCAPTCHAResponse } from "../../../utils/typeings.js";
 import { Constant, Inject, Injectable, ProviderScope } from "@tsed/di";
 import GlobalEnv from "../../../model/constants/GlobalEnv.js";
-import { Logger } from "@tsed/common";
+import { Logger } from "@tsed/logger";
 import { CAPTCHA_ENGINE } from "../../../model/di/tokens.js";
 
 @Injectable({

@@ -2,7 +2,7 @@ import { Constant, Inject, Service } from "@tsed/di";
 import { SubmissionModel } from "../model/db/Submission.model";
 import { SubmissionRoundService } from "./SubmissionRoundService.js";
 import { BadRequest, NotFound } from "@tsed/exceptions";
-import { Logger } from "@tsed/common";
+import { Logger } from "@tsed/logger";
 import { type PlatformMulterFile } from "@tsed/platform-multer";
 import { CustomWadEngine } from "../engine/CustomWadEngine.js";
 import { SubmissionRoundModel } from "../model/db/SubmissionRound.model.js";
@@ -266,7 +266,7 @@ export class SubmissionService {
                 this.logger.info(submission);
                 this.logger.info(entry);
                 throw new Error(
-                    `You have already submitted a level. You are only allowed one submission per round. Contact ${this.helpEmail ?? "decino"} to change your submission.`,
+                    `You have already submitted a level. You are only allowed one submission per round. Contact ${this.helpEmail ?? "Vytaan"} to change your submission.`,
                 );
             }
         }

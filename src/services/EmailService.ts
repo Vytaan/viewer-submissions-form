@@ -1,5 +1,6 @@
 import { Constant, Inject, Service } from "@tsed/di";
-import { AfterInit, Logger } from "@tsed/common";
+import { AfterInit } from "@tsed/platform-http";
+import { Logger } from "@tsed/logger";
 import { SentMessageInfo } from "nodemailer/lib/smtp-transport";
 import { Envelope } from "nodemailer/lib/mailer";
 import GlobalEnv from "../model/constants/GlobalEnv.js";

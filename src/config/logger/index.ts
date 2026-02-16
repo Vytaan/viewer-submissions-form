@@ -1,4 +1,7 @@
-import { $log, type DILoggerOptions } from "@tsed/common";
+import { $log } from "@tsed/logger";
+import type { DILoggerOptions } from "@tsed/di";
+import "@tsed/logger-std";
+import "@tsed/logger/layouts/JsonLayout.js";
 import { isProduction } from "../envs/index.js";
 
 if (isProduction) {
