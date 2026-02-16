@@ -1459,7 +1459,7 @@
                             const idArr = [];
                             dt.rows({ selected: true }).every(function() {
                                 const data = this.data();
-                                idArr.push(data[0]);
+                                idArr.push(Number(data[0]));
                             });
                             site.loading(true);
                             let response;
@@ -1642,7 +1642,7 @@
                                 const idArr = [];
                                 dt.rows({ selected: true }).every(function() {
                                     const data = this.data();
-                                    idArr.push(data[0]);
+                                    idArr.push(Number(data[0]));
                                 });
                                 site.loading(true);
                                 let response;

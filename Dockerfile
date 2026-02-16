@@ -10,9 +10,7 @@ COPY . .
 
 FROM base AS production
 
-RUN npm run build
-
-RUN chmod +x entrypoint.sh
+RUN npm run build && mkdir -p customWads && ln -s /data/main.sqlite main.sqlite
 
 ENV NODE_ENV=production
 
@@ -20,4 +18,4 @@ EXPOSE 2000
 
 VOLUME /data
 
-ENTRYPOINT ["./entrypoint.sh"]
+CMD ["sh", "-c", "node dist/db/runMigration.js && exec node dist/index.js"]
