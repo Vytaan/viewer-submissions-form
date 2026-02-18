@@ -1,16 +1,16 @@
 import { AbstractModel } from "./AbstractModel.js";
 import { BeforeInsert, Column, Entity, Index, JoinColumn, ManyToOne, OneToOne } from "typeorm";
 import { Any, Description, Enum, Example, Format, Name, Nullable, Required } from "@tsed/schema";
-import GZDOOM_ACTIONS from "../constants/GZDoomActions.js";
+import GzdoomActions from "../constants/GZDoomActions.js";
 import type { SubmissionRoundModel } from "./SubmissionRound.model.js";
-import DOOM_ENGINE from "../constants/DoomEngine.js";
+import DoomEngine from "../constants/DoomEngine.js";
 import type { PendingEntryConfirmationModel } from "./PendingEntryConfirmation.model.js";
 import process from "process";
 import xss from "xss";
 import { SubmissionStatusModel } from "./SubmissionStatus.model.js";
 import STATUS from "../constants/STATUS.js";
 import { AfterDeserialize } from "@tsed/json-mapper";
-import RECORDED_FORMAT from "../constants/RecordedFormat.js";
+import RecordedFormat from "../constants/RecordedFormat.js";
 import { BotDownloadAuthenticationModel } from "./BotDownloadAuthentication.model.js";
 
 @Entity()
@@ -83,9 +83,9 @@ export class SubmissionModel extends AbstractModel {
     @Example("Classic Doom")
     @Example("Boom")
     @Example("GZDoom")
-    @Enum(DOOM_ENGINE)
+    @Enum(DoomEngine)
     @Required()
-    public wadEngine: DOOM_ENGINE;
+    public wadEngine: DoomEngine;
 
     @Column({
         type: "simple-array",
@@ -99,7 +99,7 @@ export class SubmissionModel extends AbstractModel {
     @Example("mouselook")
     @Example("")
     @Any()
-    public gzDoomActions: GZDOOM_ACTIONS[] | null;
+    public gzDoomActions: GzdoomActions[] | null;
 
     @Column({
         nullable: true,
@@ -239,11 +239,11 @@ export class SubmissionModel extends AbstractModel {
     @Column({
         nullable: false,
         type: "text",
-        default: RECORDED_FORMAT.PRACTISED,
+        default: RecordedFormat.PRACTISED,
     })
     @Name("recordedFormat")
     @Description("if it should be played blind or practised")
-    public recordedFormat: RECORDED_FORMAT;
+    public recordedFormat: RecordedFormat;
 
     @Name("botDownloadToken")
     @OneToOne("BotDownloadAuthenticationModel", "submission")
@@ -291,11 +291,11 @@ export class SubmissionModel extends AbstractModel {
     }
 
     public getEngineAsString(): string {
-        return DOOM_ENGINE[this.wadEngine];
+        return DoomEngine[this.wadEngine];
     }
 
     public getGzActionAsString(): string[] {
-        return this.gzDoomActions?.map(action => GZDOOM_ACTIONS[action]) ?? [];
+        return this.gzDoomActions?.map(action => GzdoomActions[action]) ?? [];
     }
 
     public isSubmissionValidAndVerified(): boolean {

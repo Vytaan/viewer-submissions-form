@@ -118,7 +118,7 @@ export class SubmissionDao extends AbstractDao<SubmissionModel> {
             .where("round.active = :active", { active: true })
             .orWhere("submission.isChosen = :isChosen AND round.active = :inactive", {
                 isChosen: true,
-                inactive: false
+                inactive: false,
             })
             .getMany();
     }

@@ -135,7 +135,7 @@ export class SubmissionController extends BaseRestController {
     @Returns(StatusCodes.NOT_FOUND, NotFound)
     @Returns(StatusCodes.BAD_REQUEST, BadRequest)
     public async downloadWadBot(
-        @Req() req: Req,
+        @Req() _req: Req,
         @Res() res: PlatformResponse,
         @PathParams("id") id: number,
         @PathParams("roundId") roundId: number,

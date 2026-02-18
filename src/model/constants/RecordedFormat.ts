@@ -1,6 +1,6 @@
-enum RECORDED_FORMAT {
+enum RecordedFormat {
     BLIND = "Blind",
     PRACTISED = "Practised",
 }
 
-export default RECORDED_FORMAT;
+export default RecordedFormat;

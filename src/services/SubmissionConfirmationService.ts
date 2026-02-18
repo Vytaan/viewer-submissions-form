@@ -10,7 +10,7 @@ import { SentMessageInfo } from "nodemailer/lib/smtp-transport";
 import { SubmissionConfirmationRepo } from "../db/repo/SubmissionConfirmationRepo.js";
 import { SubmissionRepo } from "../db/repo/SubmissionRepo.js";
 import { Logger } from "@tsed/logger";
-import EMAIL_TEMPLATE from "../model/constants/EmailTemplate.js";
+import EmailTemplate from "../model/constants/EmailTemplate.js";
 import type { UUID } from "crypto";
 import { SubmissionRoundRepo } from "../db/repo/SubmissionRoundRepo.js";
 
@@ -114,7 +114,7 @@ export class SubmissionConfirmationService implements OnInit {
         const confirmationUrl = `${baseUrl}/processSubmission?uid=${guid}`;
         const body = `Please click the link below to confirm your submission. This link will expire in 20 minutes.\n${confirmationUrl}`;
         const to = pendingEntry.submission.submitterEmail;
-        const messageInfo = await this.emailService.sendMail(to, EMAIL_TEMPLATE.NEW_SUBMISSION, body);
+        const messageInfo = await this.emailService.sendMail(to, EmailTemplate.NEW_SUBMISSION, body);
         this.logger.info(`${to} email sent with guild ${guid}`);
         return messageInfo;
     }

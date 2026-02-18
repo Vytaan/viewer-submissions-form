@@ -1,0 +1,7 @@
+@use "../../styles/variables" as *;
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin: $spacing-md 0;
+}

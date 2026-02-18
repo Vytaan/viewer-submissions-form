@@ -7,18 +7,18 @@ import { type PlatformMulterFile } from "@tsed/platform-multer";
 import { CustomWadEngine } from "../engine/CustomWadEngine.js";
 import { SubmissionRoundModel } from "../model/db/SubmissionRound.model.js";
 import { SubmissionConfirmationService } from "./SubmissionConfirmationService.js";
-import DOOM_ENGINE from "../model/constants/DoomEngine.js";
+import DoomEngine from "../model/constants/DoomEngine.js";
 import { SubmissionSocket } from "./socket/SubmissionSocket.js";
 import { SubmissionStatusModel } from "../model/db/SubmissionStatus.model.js";
 import GlobalEnv from "../model/constants/GlobalEnv.js";
 import { WadValidationService } from "./WadValidationService.js";
 import { SubmissionRepo } from "../db/repo/SubmissionRepo.js";
-import RECORDED_FORMAT from "../model/constants/RecordedFormat.js";
+import RecordedFormat from "../model/constants/RecordedFormat.js";
 import { EmailService } from "./EmailService.js";
-import EMAIL_TEMPLATE from "../model/constants/EmailTemplate.js";
+import EmailTemplate from "../model/constants/EmailTemplate.js";
 import STATUS from "../model/constants/STATUS.js";
 import { RunEvery } from "../model/di/decorators/Cron.js";
-import METHOD_EXECUTOR_TIME_UNIT from "../model/constants/METHOD_EXECUTOR_TIME_UNIT.js";
+import MethodExecutorTimeUnit from "../model/constants/METHOD_EXECUTOR_TIME_UNIT.js";
 
 @Service()
 export class SubmissionService {
@@ -84,7 +84,14 @@ export class SubmissionService {
         if (customWad) {
             await this.customWadEngine.moveWad(saveEntry.id, customWad, currentActiveRound.id);
         }
-        saveEntry.confirmation = await this.submissionConfirmationService.generateConfirmationEntry(entry.id);
+        try {
+            saveEntry.confirmation = await this.submissionConfirmationService.generateConfirmationEntry(entry.id);
+        } catch (e) {
+            this.logger.error("Unable to generate confirmation entry", e);
+            await this.deleteEntries([saveEntry.id], false);
+            throw e;
+        }
+
         return saveEntry;
     }
 
@@ -110,7 +117,7 @@ export class SubmissionService {
                 if (status.additionalInfo) {
                     body += ` with comment "${status.additionalInfo}"`;
                 }
-                await this.emailService.sendMail(entry.submitterEmail, EMAIL_TEMPLATE.REJECTED, body);
+                await this.emailService.sendMail(entry.submitterEmail, EmailTemplate.REJECTED, body);
             }
         }
     }
@@ -145,7 +152,7 @@ export class SubmissionService {
             }
 
             if (entry.engine) {
-                submission.wadEngine = entry.engine as DOOM_ENGINE;
+                submission.wadEngine = entry.engine as DoomEngine;
             }
 
             if (entry.author) {
@@ -157,7 +164,7 @@ export class SubmissionService {
             }
 
             if (entry.recordedFormat) {
-                submission.recordedFormat = entry.recordedFormat as RECORDED_FORMAT;
+                submission.recordedFormat = entry.recordedFormat as RecordedFormat;
             }
 
             submission.submitterName = (entry.authorName as string) ?? null;
@@ -208,7 +215,7 @@ export class SubmissionService {
             const emailPromises = submissionsToDelete.map(entry =>
                 entry.isChosen
                     ? Promise.resolve()
-                    : this.emailService.sendMail(entry.submitterEmail, EMAIL_TEMPLATE.DELETED),
+                    : this.emailService.sendMail(entry.submitterEmail, EmailTemplate.DELETED),
             );
             try {
                 await Promise.all(emailPromises);
@@ -282,7 +289,7 @@ export class SubmissionService {
         return parsedInt.toString();
     }
 
-    @RunEvery(1, METHOD_EXECUTOR_TIME_UNIT.minutes, true)
+    @RunEvery(1, MethodExecutorTimeUnit.MINUTES, true)
     private async detectAndRemoveExpiredSubmissions(): Promise<void> {
         const expiredEntries = await this.submissionRepo.getExpiredEntries();
         if (expiredEntries.length === 0) {

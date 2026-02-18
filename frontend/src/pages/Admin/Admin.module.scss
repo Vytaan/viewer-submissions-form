@@ -1,0 +1,255 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.activeRoundCard {
+    @include doom-card;
+    margin-bottom: $spacing-xl;
+}
+
+.activeRoundHeader {
+    @include doom-card-header;
+}
+
+.activeRoundBody {
+    padding: $spacing-lg;
+    text-align: center;
+}
+
+.statusActive {
+    color: $color-success;
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    margin-bottom: $spacing-lg;
+}
+
+.statusPaused {
+    color: $color-danger;
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.85rem;
+    margin-bottom: $spacing-lg;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+    margin-bottom: $spacing-md;
+}
+
+.statItem {
+    text-align: center;
+}
+
+.statLabel {
+    font-family: $font-heading;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $doom-red-bright;
+    margin-bottom: $spacing-xs;
+}
+
+.statValue {
+    font-size: 1.2rem;
+    color: $text-heading;
+    font-family: $font-heading;
+}
+
+.statSubtext {
+    font-size: 0.7rem;
+    color: $text-muted;
+}
+
+.roundActions {
+    padding: $spacing-md $spacing-lg;
+    border-top: 1px solid $border-color;
+    display: flex;
+    justify-content: center;
+    gap: $spacing-sm;
+}
+
+.btn {
+    @include doom-btn;
+}
+
+.btnSuccess {
+    @include doom-btn;
+    @include doom-btn-success;
+}
+
+.btnDanger {
+    @include doom-btn;
+    @include doom-btn-danger;
+}
+
+.section {
+    margin-top: $spacing-xl;
+}
+
+.sectionCard {
+    @include doom-card;
+}
+
+.sectionHeader {
+    @include doom-card-header;
+}
+
+.sectionBody {
+    padding: $spacing-lg;
+}
+
+.noRound {
+    @include doom-card;
+    text-align: center;
+    padding: $spacing-xxl;
+
+    p {
+        color: $text-muted;
+        margin-bottom: $spacing-lg;
+    }
+}
+
+.createRoundBtn {
+    @include doom-btn;
+    font-size: 0.9rem;
+}
+
+.bottomActions {
+    margin-top: $spacing-xl;
+    display: flex;
+    justify-content: center;
+    gap: $spacing-sm;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    margin-bottom: $spacing-md;
+}
+
+.formLabel {
+    font-family: $font-heading;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $text-primary;
+}
+
+.formInput {
+    @include doom-input;
+}
+
+.formSelect {
+    @include doom-input;
+}
+
+.infoContent {
+    p {
+        margin-bottom: $spacing-sm;
+        font-size: 0.85rem;
+        color: $text-primary;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        max-height: 200px;
+        overflow-y: auto;
+        background: $bg-dark;
+        padding: $spacing-md;
+        border: 1px solid $border-color;
+        border-radius: $radius-md;
+        font-size: 0.8rem;
+        color: $text-primary;
+    }
+}
+
+.spoiler {
+    color: $bg-dark;
+    background-color: $bg-dark;
+    cursor: pointer;
+
+    &:hover {
+        background-color: transparent;
+        color: $text-primary;
+    }
+}
+
+.inputGroup {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+}
+
+.inputGroupText {
+    font-size: 0.8rem;
+    color: $text-muted;
+    white-space: nowrap;
+}
+
+.mappingRow {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-sm;
+    flex-wrap: wrap;
+}
+
+.mappingInput {
+    @include doom-input;
+    width: auto;
+    flex: 1;
+    min-width: 100px;
+}
+
+.removeMappingBtn {
+    @include doom-btn;
+    @include doom-btn-danger;
+    padding: 4px 8px;
+    font-size: 0.65rem;
+}
+
+.mappingCheckbox {
+    accent-color: $doom-red;
+}
+
+.cardGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-md;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.toolbar {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+}
+
+.toolbarBtn {
+    @include doom-btn;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}
+
+.toolbarBtnDanger {
+    @include doom-btn;
+    @include doom-btn-danger;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}
+
+.toolbarBtnSuccess {
+    @include doom-btn;
+    @include doom-btn-success;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}

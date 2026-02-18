@@ -21,15 +21,25 @@ export class PassportCtrl extends BaseRestController {
     @UseBefore(CaptchaMiddleWare)
     @Authenticate("login", { failWithError: true })
     @Returns(StatusCodes.MOVED_TEMPORARILY)
+    @Returns(StatusCodes.OK)
     @Returns(StatusCodes.UNAUTHORIZED)
     public login(@Req() req: Req, @Res() res: Res): void {
+        if (req.headers.accept?.includes("application/json")) {
+            res.status(StatusCodes.OK).json({ success: true });
+            return;
+        }
         res.redirect("/secure");
     }
 
     @Get("/logout")
     @Returns(StatusCodes.MOVED_TEMPORARILY)
+    @Returns(StatusCodes.OK)
     public logout(@Req() request: Req, @Res() res: Res): void {
         request.session.destroy(function () {
+            if (request.headers.accept?.includes("application/json")) {
+                res.status(StatusCodes.OK).json({ success: true });
+                return;
+            }
             res.redirect("/");
         });
     }

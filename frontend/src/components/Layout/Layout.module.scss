@@ -1,0 +1,78 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: linear-gradient(180deg, #1a1a1a 0%, #111 100%);
+    border-bottom: 2px solid $doom-red;
+    padding: $spacing-md $spacing-lg;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba($doom-red, 0.03) 2px,
+            rgba($doom-red, 0.03) 4px
+        );
+        pointer-events: none;
+    }
+}
+
+.headerContent {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+}
+
+.logo {
+    font-family: $font-heading;
+    font-size: 1.4rem;
+    color: $doom-red-bright;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    @include doom-text-glow;
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    span {
+        color: $text-heading;
+    }
+}
+
+.subtitle {
+    font-family: $font-heading;
+    font-size: 0.65rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-top: 2px;
+}
+
+.main {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: $spacing-xl $spacing-lg;
+}

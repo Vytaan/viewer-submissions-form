@@ -1,8 +1,8 @@
-enum METHOD_EXECUTOR_TIME_UNIT {
-    days = "days",
-    hours = "hours",
-    minutes = "minutes",
-    seconds = "seconds",
+enum MethodExecutorTimeUnit {
+    DAYS = "days",
+    HOURS = "hours",
+    MINUTES = "minutes",
+    SECONDS = "seconds",
 }
 
-export default METHOD_EXECUTOR_TIME_UNIT;
+export default MethodExecutorTimeUnit;

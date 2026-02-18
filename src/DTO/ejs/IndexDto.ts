@@ -1,6 +1,6 @@
 import { SubmissionRoundModel } from "../../model/db/SubmissionRound.model.js";
-import DOOM_ENGINE from "../../model/constants/DoomEngine.js";
-import GZDOOM_ACTIONS from "../../model/constants/GZDoomActions.js";
+import DoomEngine from "../../model/constants/DoomEngine.js";
+import GzdoomActions from "../../model/constants/GZDoomActions.js";
 import { ObjectUtils } from "../../utils/Utils.js";
 import { WadValidationService } from "../../services/WadValidationService.js";
 
@@ -35,11 +35,11 @@ export class IndexDto {
     }
 
     public get doomEngines(): Record<string, unknown> {
-        return ObjectUtils.getEnumAsObject(DOOM_ENGINE);
+        return ObjectUtils.getEnumAsObject(DoomEngine);
     }
 
     public get gzActions(): Record<string, unknown> {
-        return ObjectUtils.getEnumAsObject(GZDOOM_ACTIONS);
+        return ObjectUtils.getEnumAsObject(GzdoomActions);
     }
 
     public getRoundDateAsString(round: SubmissionRoundModel): string {

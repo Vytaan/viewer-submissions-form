@@ -1,0 +1,88 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.card {
+    @include doom-card;
+}
+
+.header {
+    @include doom-card-header;
+    padding: 0;
+}
+
+.tabList {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+}
+
+.tab {
+    padding: $spacing-md $spacing-lg;
+    font-family: $font-heading;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $text-muted;
+    cursor: pointer;
+    border: none;
+    background: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all $transition-fast;
+
+    &:hover {
+        color: $text-heading;
+    }
+}
+
+.tabActive {
+    composes: tab;
+    color: $doom-red-bright;
+    border-bottom-color: $doom-red;
+}
+
+.body {
+    padding: $spacing-lg;
+    overflow: auto;
+}
+
+.toggleWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+}
+
+.toggleLabel {
+    font-family: $font-heading;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $text-muted;
+}
+
+.toggle {
+    accent-color: $doom-red;
+    width: 18px;
+    height: 18px;
+}
+
+.roundDate {
+    font-size: 0.8rem;
+    color: $text-muted;
+    margin-bottom: $spacing-md;
+}
+
+.footer {
+    padding: $spacing-md $spacing-lg;
+    border-top: 1px solid $border-color;
+}
+
+.deleteBtn {
+    @include doom-btn;
+    @include doom-btn-danger;
+    font-size: 0.7rem;
+}

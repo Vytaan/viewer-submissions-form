@@ -1,9 +1,9 @@
-enum DOOM_ENGINE {
+enum DoomEngine {
     UNKNOWN = -2,
     NA = 0,
-    GZDoom = -1,
-    Doom = 3,
-    DoomII = 2,
+    GZDOOM = -1,
+    DOOM = 3,
+    DOOM_II = 2,
     FINAL_DOOM = 4,
     BOOM = 9,
     MBF = 11,
@@ -11,4 +11,4 @@ enum DOOM_ENGINE {
     DOOM_64,
 }
 
-export default DOOM_ENGINE;
+export default DoomEngine;

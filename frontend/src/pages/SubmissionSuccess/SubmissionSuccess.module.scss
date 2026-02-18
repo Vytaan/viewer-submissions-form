@@ -1,0 +1,43 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 40vh;
+}
+
+.card {
+    @include doom-card;
+    max-width: 600px;
+    width: 100%;
+    text-align: center;
+    padding: $spacing-xxl;
+}
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: $spacing-lg;
+}
+
+.iconSuccess {
+    composes: icon;
+    color: $color-success;
+}
+
+.iconError {
+    composes: icon;
+    color: $color-danger;
+}
+
+.message {
+    font-size: 1rem;
+    color: $text-primary;
+    margin-bottom: $spacing-lg;
+}
+
+.homeLink {
+    @include doom-btn;
+    text-decoration: none;
+}
