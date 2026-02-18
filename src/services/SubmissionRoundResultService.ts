@@ -116,6 +116,32 @@ export class SubmissionRoundResultService {
         return allNonActiveRounds ?? [];
     }
 
+    public getEligibleEntries(roundId: number): Promise<SubmissionModel[]> {
+        return this.submissionRepo.getUnchosenSubmissions(roundId);
+    }
+
+    public async addManualEntries(roundId: number, entryIds: number[]): Promise<SubmissionModel[]> {
+        const round = await this.submissionRoundService.getSubmissionRound(roundId);
+        if (!round) {
+            throw new BadRequest(`Round ${roundId} does not exist.`);
+        }
+        if (entryIds.length === 0) {
+            throw new BadRequest("No entries provided.");
+        }
+
+        const eligible = await this.getEligibleEntries(roundId);
+        const eligibleIds = new Set(eligible.map(e => e.id));
+
+        for (const id of entryIds) {
+            if (!eligibleIds.has(id)) {
+                throw new BadRequest(`Entry ${id} is not eligible to be added.`);
+            }
+        }
+
+        await this.submitEntries(entryIds, round, true);
+        return round.submissions.filter(s => entryIds.includes(s.id));
+    }
+
     public async addRandomEntry(roundId: number): Promise<SubmissionModel | null> {
         const round = await this.submissionRoundService.getSubmissionRound(roundId);
         if (!round) {

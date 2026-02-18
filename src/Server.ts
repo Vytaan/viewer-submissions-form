@@ -46,6 +46,9 @@ import { NetworkUtils, wadDir } from "./utils/Utils.js";
 const opts: Partial<TsED.Configuration> = {
     ...config,
     acceptMimes: ["application/json"],
+    jsonMapper: {
+        strictGroups: true,
+    },
     httpPort: process.env.PORT ?? 8083,
     httpsPort: ((): string | number | false => {
         if (process.env.HTTPS === "true") {

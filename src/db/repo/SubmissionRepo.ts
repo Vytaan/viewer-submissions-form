@@ -101,6 +101,10 @@ export class SubmissionRepo {
         return this.submissionDao.getExpiredEntries();
     }
 
+    public getUnchosenSubmissions(roundId: number): Promise<SubmissionModel[]> {
+        return this.submissionDao.getUnchosenSubmissions(roundId);
+    }
+
     public getCurrentAndNotChosenSubmissions(): Promise<SubmissionModel[]> {
         return this.submissionDao.getCurrentAndNotChosenSubmissions();
     }

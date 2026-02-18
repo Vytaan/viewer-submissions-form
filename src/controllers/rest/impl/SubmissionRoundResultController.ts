@@ -55,4 +55,23 @@ export class SubmissionRoundResultController extends BaseRestController {
         }
         return entryAdded;
     }
+
+    @Get("/eligibleEntries")
+    @Authorize("login")
+    @Security("login")
+    @Returns(StatusCodes.OK, Array)
+    public getEligibleEntries(@QueryParams("roundId") roundId: number): Promise<unknown> {
+        return this.submissionRoundResultService.getEligibleEntries(roundId);
+    }
+
+    @Post("/addManualEntries")
+    @Authorize("login")
+    @Security("login")
+    @(Returns(StatusCodes.OK, Array).Of(SubmissionModel))
+    public addManualEntries(
+        @QueryParams("roundId") roundId: number,
+        @BodyParams() @CollectionOf(Number) @Integer() entryIds: number[],
+    ): Promise<unknown> {
+        return this.submissionRoundResultService.addManualEntries(roundId, entryIds);
+    }
 }

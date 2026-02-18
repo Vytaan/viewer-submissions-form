@@ -95,6 +95,18 @@ export class SubmissionDao extends AbstractDao<SubmissionModel> {
         return true;
     }
 
+    public getUnchosenSubmissions(roundId: number, transaction?: EntityManager): Promise<SubmissionModel[]> {
+        return this.getEntityManager(transaction).find({
+            select: ["id", "wadName", "wadLevel", "submitterName", "recordedFormat"],
+            where: {
+                submissionRoundId: roundId,
+                isChosen: false,
+                submissionValid: true,
+                verified: true,
+            },
+        });
+    }
+
     public getExpiredEntries(transaction?: EntityManager): Promise<SubmissionModel[]> {
         return this.getEntityManager(transaction).find({
             relations: ["confirmation"],
@@ -118,7 +130,7 @@ export class SubmissionDao extends AbstractDao<SubmissionModel> {
             .where("round.active = :active", { active: true })
             .orWhere("submission.isChosen = :isChosen AND round.active = :inactive", {
                 isChosen: true,
-                inactive: false
+                inactive: false,
             })
             .getMany();
     }

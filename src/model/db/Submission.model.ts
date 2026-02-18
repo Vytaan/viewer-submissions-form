@@ -1,6 +1,6 @@
 import { AbstractModel } from "./AbstractModel.js";
 import { BeforeInsert, Column, Entity, Index, JoinColumn, ManyToOne, OneToOne } from "typeorm";
-import { Any, Description, Enum, Example, Format, Name, Nullable, Required } from "@tsed/schema";
+import { Any, Description, Enum, Example, Format, Groups, Name, Nullable, Required } from "@tsed/schema";
 import GZDOOM_ACTIONS from "../constants/GZDoomActions.js";
 import type { SubmissionRoundModel } from "./SubmissionRound.model.js";
 import DOOM_ENGINE from "../constants/DoomEngine.js";
@@ -195,8 +195,7 @@ export class SubmissionModel extends AbstractModel {
     @Description("Valid if the user clicks the confirmation URL")
     public submissionValid: boolean;
 
-    @Name("submissionRound")
-    @Description("The submission round this entry belongs to")
+    @Groups("internal")
     @ManyToOne("SubmissionRoundModel", "submissions", {
         ...AbstractModel.cascadeOps,
     })
