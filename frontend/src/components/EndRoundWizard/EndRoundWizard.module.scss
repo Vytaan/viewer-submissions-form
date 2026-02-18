@@ -1,0 +1,128 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.steps {
+    display: flex;
+    gap: 0;
+    margin-bottom: $spacing-lg;
+}
+
+.step {
+    flex: 1;
+    padding: $spacing-sm $spacing-md;
+    font-family: $font-heading;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    background: $bg-panel;
+    border: 1px solid $border-color;
+    color: $text-muted;
+}
+
+.stepActive {
+    composes: step;
+    background: rgba($doom-red, 0.2);
+    border-color: $doom-red;
+    color: $doom-red-bright;
+}
+
+.stepComplete {
+    composes: step;
+    background: rgba($color-success, 0.1);
+    border-color: $color-success;
+    color: $color-success;
+}
+
+.content {
+    min-height: 200px;
+    margin-bottom: $spacing-lg;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.prevBtn {
+    @include doom-btn;
+}
+
+.nextBtn {
+    @include doom-btn;
+}
+
+.finishBtn {
+    @include doom-btn;
+    @include doom-btn-success;
+}
+
+.alert {
+    padding: $spacing-md;
+    border-radius: $radius-md;
+    font-size: 0.85rem;
+    margin-bottom: $spacing-md;
+}
+
+.alertSuccess {
+    composes: alert;
+    background: rgba($color-success, 0.15);
+    border: 1px solid $color-success;
+    color: $color-success;
+}
+
+.alertWarning {
+    composes: alert;
+    background: rgba($color-warning, 0.15);
+    border: 1px solid $color-warning;
+    color: $color-warning;
+}
+
+.alertInfo {
+    composes: alert;
+    background: rgba($color-info, 0.15);
+    border: 1px solid $color-info;
+    color: $color-info;
+}
+
+.pauseBtn {
+    @include doom-btn;
+    @include doom-btn-success;
+    margin-left: $spacing-sm;
+}
+
+.toolbar {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+}
+
+.toolbarBtn {
+    @include doom-btn;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}
+
+.toolbarBtnDanger {
+    @include doom-btn;
+    @include doom-btn-danger;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}
+
+.table {
+    @include doom-table;
+}
+
+.selectedRow {
+    background: rgba($doom-red, 0.15) !important;
+}
+
+.dupeRow {
+    background: rgba($color-danger, 0.2) !important;
+}
+
+.reviewTable {
+    @include doom-table;
+}

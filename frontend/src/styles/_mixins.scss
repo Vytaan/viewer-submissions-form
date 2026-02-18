@@ -1,0 +1,187 @@
+@use "variables" as *;
+
+@mixin scanlines {
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.08) 2px,
+            rgba(0, 0, 0, 0.08) 4px
+        );
+        pointer-events: none;
+        z-index: 1;
+    }
+}
+
+@mixin doom-card {
+    background: $bg-panel;
+    border: 2px solid $border-color;
+    border-radius: $radius-md;
+    position: relative;
+
+    &:hover {
+        border-color: $doom-red;
+    }
+}
+
+@mixin doom-card-header {
+    background: linear-gradient(180deg, #222 0%, #1a1a1a 100%);
+    border-bottom: 2px solid $doom-red;
+    padding: $spacing-md $spacing-lg;
+    font-family: $font-heading;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $doom-red-bright;
+}
+
+@mixin doom-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-lg;
+    font-family: $font-heading;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid $doom-red;
+    background: transparent;
+    color: $doom-red-bright;
+    cursor: pointer;
+    transition: all $transition-fast;
+    border-radius: $radius-sm;
+
+    &:hover:not(:disabled) {
+        background: $doom-red;
+        color: $text-heading;
+        box-shadow: 0 0 15px $doom-red-glow;
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.97);
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+}
+
+@mixin doom-btn-success {
+    border-color: $color-success;
+    color: $color-success;
+
+    &:hover:not(:disabled) {
+        background: $color-success;
+        color: $bg-dark;
+        box-shadow: 0 0 15px rgba($color-success, 0.5);
+    }
+}
+
+@mixin doom-btn-danger {
+    border-color: $color-danger;
+    color: $color-danger;
+
+    &:hover:not(:disabled) {
+        background: $color-danger;
+        color: $text-heading;
+        box-shadow: 0 0 15px rgba($color-danger, 0.5);
+    }
+}
+
+@mixin doom-input {
+    background: $bg-input;
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    color: $text-primary;
+    padding: $spacing-sm $spacing-md;
+    font-family: $font-body;
+    font-size: 0.9rem;
+    transition:
+        border-color $transition-fast,
+        box-shadow $transition-fast;
+    width: 100%;
+
+    &:focus {
+        outline: none;
+        border-color: $doom-red;
+        box-shadow: 0 0 10px $doom-red-glow;
+    }
+
+    &::placeholder {
+        color: $text-muted;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+@mixin doom-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: $font-body;
+    font-size: 0.85rem;
+
+    th {
+        background: #222;
+        color: $doom-red-bright;
+        font-family: $font-heading;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        font-size: 0.75rem;
+        padding: $spacing-sm $spacing-md;
+        border-bottom: 2px solid $doom-red;
+        text-align: left;
+        white-space: nowrap;
+    }
+
+    td {
+        padding: $spacing-sm $spacing-md;
+        border-bottom: 1px solid $border-color;
+        color: $text-primary;
+        vertical-align: middle;
+    }
+
+    tbody tr {
+        transition: background $transition-fast;
+        border-left: 3px solid transparent;
+
+        &:hover {
+            background: $bg-hover;
+            border-left-color: $doom-red;
+        }
+    }
+}
+
+@mixin doom-glow($color: $doom-red) {
+    box-shadow:
+        0 0 10px rgba($color, 0.5),
+        0 0 20px rgba($color, 0.2);
+}
+
+@mixin doom-text-glow($color: $doom-red-bright) {
+    text-shadow: 0 0 8px rgba($color, 0.6);
+}
+
+@mixin status-badge($bg, $text: $text-heading) {
+    display: inline-block;
+    padding: 2px 8px;
+    font-family: $font-heading;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: $radius-sm;
+    background: rgba($bg, 0.2);
+    color: $bg;
+    border: 1px solid $bg;
+}

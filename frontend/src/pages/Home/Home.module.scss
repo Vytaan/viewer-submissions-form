@@ -1,0 +1,181 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.noRounds {
+    @include doom-card;
+    padding: $spacing-xl;
+    text-align: center;
+
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: $spacing-md;
+        color: $doom-red-bright;
+    }
+
+    p {
+        color: $text-muted;
+    }
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+    align-items: start;
+
+    @media (max-width: 992px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.formCard {
+    @include doom-card;
+}
+
+.formHeader {
+    @include doom-card-header;
+}
+
+.formBody {
+    padding: $spacing-lg;
+    position: relative;
+}
+
+.pausedOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.pausedText {
+    font-family: $font-heading;
+    font-size: 1.2rem;
+    color: $doom-red-bright;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    @include doom-text-glow;
+}
+
+.formFooter {
+    padding: $spacing-md $spacing-lg;
+    border-top: 1px solid $border-color;
+    text-align: center;
+    font-size: 0.8rem;
+    color: $text-muted;
+
+    a {
+        color: $doom-red-bright;
+    }
+}
+
+.resultsCard {
+    @include doom-card;
+    display: flex;
+    flex-direction: column;
+}
+
+.resultsHeader {
+    @include doom-card-header;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.resultsBody {
+    padding: $spacing-lg;
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.badge {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: $radius-sm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.badgeSuccess {
+    composes: badge;
+    background: rgba($color-success, 0.2);
+    color: $color-success;
+    border: 1px solid $color-success;
+}
+
+.badgeDanger {
+    composes: badge;
+    background: rgba($color-danger, 0.2);
+    color: $color-danger;
+    border: 1px solid $color-danger;
+}
+
+.deadlineFooter {
+    padding: $spacing-md $spacing-lg;
+    border-top: 1px solid $border-color;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.deadlineBadge {
+    font-family: $font-heading;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: $radius-sm;
+}
+
+.deadlineBadgeInfo {
+    composes: deadlineBadge;
+    background: rgba($color-info, 0.15);
+    color: $color-info;
+    border: 1px solid $color-info;
+}
+
+.deadlineBadgeDanger {
+    composes: deadlineBadge;
+    background: rgba($color-danger, 0.15);
+    color: $color-danger;
+    border: 1px solid $color-danger;
+}
+
+.section {
+    margin-top: $spacing-xxl;
+}
+
+.alertMessages {
+    margin-top: $spacing-md;
+}
+
+.alertDanger {
+    padding: $spacing-md;
+    border-radius: $radius-md;
+    background: rgba(#ff4136, 0.15);
+    border: 1px solid #ff4136;
+    color: #ff4136;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.alertSuccess {
+    padding: $spacing-md;
+    border-radius: $radius-md;
+    background: rgba(#2ecc40, 0.15);
+    border: 1px solid #2ecc40;
+    color: #2ecc40;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}

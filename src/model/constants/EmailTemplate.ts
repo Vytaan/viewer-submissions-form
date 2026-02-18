@@ -1,7 +1,7 @@
-enum EMAIL_TEMPLATE {
+enum EmailTemplate {
     REJECTED,
     DELETED,
     NEW_SUBMISSION,
 }
 
-export default EMAIL_TEMPLATE;
+export default EmailTemplate;

@@ -1,0 +1,28 @@
+@use "reset";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+.hidden {
+    display: none !important;
+}
+
+.text-success {
+    color: #2ecc40 !important;
+}
+
+.text-danger {
+    color: #ff4136 !important;
+}
+
+.text-warning {
+    color: #ff851b !important;
+}
+
+.text-info {
+    color: #39cccc !important;
+}
+
+.text-muted {
+    color: #888888 !important;
+}

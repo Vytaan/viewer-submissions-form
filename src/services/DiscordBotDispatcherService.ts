@@ -4,8 +4,8 @@ import { Logger } from "@tsed/logger";
 import GlobalEnv from "../model/constants/GlobalEnv.js";
 import { BotDownloadAuthenticationRepo } from "../db/repo/BotDownloadAuthenticationRepo.js";
 import { SubmissionRepo } from "../db/repo/SubmissionRepo.js";
-import RECORDED_FORMAT from "../model/constants/RecordedFormat.js";
-import DOOM_ENGINE from "../model/constants/DoomEngine.js";
+import RecordedFormat from "../model/constants/RecordedFormat.js";
+import DoomEngine from "../model/constants/DoomEngine.js";
 
 type SubmissionPayload = {
     wadName: string;
@@ -13,8 +13,8 @@ type SubmissionPayload = {
     timeStamp: number;
     info: string | null;
     downloadUrl: string | null;
-    recordFormat: RECORDED_FORMAT;
-    mapCompatibility: DOOM_ENGINE;
+    recordFormat: RecordedFormat;
+    mapCompatibility: DoomEngine;
     sourcePort: string | null;
 };
 

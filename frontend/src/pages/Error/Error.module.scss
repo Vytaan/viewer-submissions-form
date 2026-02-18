@@ -1,0 +1,44 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh;
+    text-align: center;
+}
+
+.card {
+    @include doom-card;
+    padding: $spacing-xxl;
+    max-width: 500px;
+}
+
+.code {
+    font-family: $font-heading;
+    font-size: 5rem;
+    color: $doom-red;
+    @include doom-text-glow;
+    line-height: 1;
+    margin-bottom: $spacing-md;
+}
+
+.title {
+    font-family: $font-heading;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: $text-heading;
+    margin-bottom: $spacing-md;
+}
+
+.message {
+    color: $text-muted;
+    margin-bottom: $spacing-xl;
+}
+
+.homeLink {
+    @include doom-btn;
+    text-decoration: none;
+}

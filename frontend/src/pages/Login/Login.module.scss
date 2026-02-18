@@ -1,0 +1,66 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+.card {
+    @include doom-card;
+    width: 100%;
+    max-width: 420px;
+    border-color: $doom-red;
+}
+
+.header {
+    @include doom-card-header;
+    text-align: center;
+}
+
+.body {
+    padding: $spacing-xl;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+}
+
+.label {
+    font-family: $font-heading;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $text-primary;
+}
+
+.input {
+    @include doom-input;
+}
+
+.submitBtn {
+    @include doom-btn;
+    @include doom-btn-success;
+    width: 100%;
+    padding: $spacing-md;
+    font-size: 0.9rem;
+}
+
+.error {
+    padding: $spacing-md;
+    border-radius: $radius-md;
+    background: rgba($color-danger, 0.15);
+    border: 1px solid $color-danger;
+    color: $color-danger;
+    font-size: 0.85rem;
+}

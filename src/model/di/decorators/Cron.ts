@@ -3,7 +3,7 @@ import { AsyncTask, CronJob, SimpleIntervalJob, ToadScheduler } from "toad-sched
 import { logger } from "@tsed/di";
 import cronstrue from "cronstrue";
 import { classOf, isFunction, nameOf } from "@tsed/core";
-import METHOD_EXECUTOR_TIME_UNIT from "../../constants/METHOD_EXECUTOR_TIME_UNIT.js";
+import MethodExecutorTimeUnit from "../../constants/METHOD_EXECUTOR_TIME_UNIT.js";
 
 const scheduler = new ToadScheduler();
 
@@ -55,7 +55,7 @@ export function Cron<T>(
 
 export function RunEvery<T>(
     time: number,
-    timeUnit: METHOD_EXECUTOR_TIME_UNIT | string,
+    timeUnit: MethodExecutorTimeUnit | string,
     runImmediately = false,
 ): (target: T, propertyKey: string, descriptor: PropertyDescriptor) => void {
     return function (target: T, propertyKey: string, descriptor: PropertyDescriptor): void {

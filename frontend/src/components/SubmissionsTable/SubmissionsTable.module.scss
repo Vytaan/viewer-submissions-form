@@ -1,0 +1,110 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.wrapper {
+    overflow-x: auto;
+}
+
+.table {
+    @include doom-table;
+}
+
+.sortable {
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        color: $text-heading;
+    }
+}
+
+.sortIcon {
+    margin-left: 4px;
+    font-size: 0.7rem;
+}
+
+.selectedRow {
+    background: rgba($doom-red, 0.15) !important;
+    border-left-color: $doom-red-bright !important;
+}
+
+.statusQueued {
+    @include status-badge($color-warning);
+}
+
+.statusInProgress {
+    @include status-badge($color-info);
+}
+
+.statusCompleted {
+    @include status-badge($color-success);
+}
+
+.statusRejected {
+    @include status-badge($color-danger);
+}
+
+.downloadBtn {
+    @include doom-btn;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+}
+
+.youtubeLink {
+    color: inherit;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+.spoiler {
+    color: $bg-dark;
+    background-color: $bg-dark;
+
+    &:hover {
+        background-color: transparent;
+        color: $text-primary;
+    }
+}
+
+.toolbar {
+    display: flex;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+    flex-wrap: wrap;
+}
+
+.toolbarBtn {
+    @include doom-btn;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}
+
+.toolbarBtnDanger {
+    @include doom-btn;
+    @include doom-btn-danger;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}
+
+.toolbarBtnSuccess {
+    @include doom-btn;
+    @include doom-btn-success;
+    padding: 4px 12px;
+    font-size: 0.7rem;
+}
+
+.emptyState {
+    text-align: center;
+    padding: $spacing-xl;
+    color: $text-muted;
+    font-family: $font-heading;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+}
+
+.normal {
+    white-space: normal !important;
+}

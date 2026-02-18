@@ -1,0 +1,23 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.message {
+    font-size: 0.9rem;
+    color: $text-primary;
+    margin-bottom: $spacing-lg;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: $spacing-sm;
+}
+
+.confirmBtn {
+    @include doom-btn;
+    @include doom-btn-danger;
+}
+
+.cancelBtn {
+    @include doom-btn;
+}

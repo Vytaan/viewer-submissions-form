@@ -1,0 +1,54 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.panel {
+    @include doom-card;
+}
+
+.header {
+    @include doom-card-header;
+}
+
+.body {
+    padding: $spacing-lg;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.chartWrapper {
+    text-align: center;
+}
+
+.chartTitle {
+    font-family: $font-heading;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $doom-red-bright;
+    margin-bottom: $spacing-md;
+}
+
+.chartContainer {
+    height: 250px;
+    position: relative;
+}
+
+.noData {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    color: $text-muted;
+    font-family: $font-heading;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

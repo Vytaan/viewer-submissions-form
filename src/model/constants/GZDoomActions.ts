@@ -1,7 +1,7 @@
-enum GZDOOM_ACTIONS {
+enum GzdoomActions {
     JUMP,
     CROUCH,
     MOUSE_LOOK,
 }
 
-export default GZDOOM_ACTIONS;
+export default GzdoomActions;

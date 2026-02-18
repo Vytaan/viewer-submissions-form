@@ -46,11 +46,24 @@ export class SubmissionRoundController extends BaseRestController {
         return activeRound;
     }
 
+    @Get("/currentActiveRoundAdmin")
+    @Authorize("login")
+    @Security("login")
+    @Returns(StatusCodes.OK, SubmissionRoundModel)
+    @Returns(StatusCodes.NOT_FOUND, NotFound)
+    public async getActiveRoundAdmin(): Promise<unknown> {
+        const activeRound = await this.submissionRoundService.getCurrentActiveSubmissionRound(false);
+        if (!activeRound) {
+            throw new NotFound("No submission rounds are currently active.");
+        }
+        return activeRound;
+    }
+
     @Get("/getAllRounds")
     @Authorize("login")
     @Security("login")
     @(Returns(StatusCodes.OK, Array).Of(SubmissionRoundModel))
-    public getAllRounds(@Res() res: PlatformResponse, @QueryParams("includeActive") includeActive: boolean): unknown {
+    public getAllRounds(@Res() _res: PlatformResponse, @QueryParams("includeActive") includeActive: boolean): unknown {
         return this.submissionRoundService.getAllSubmissionRounds(includeActive);
     }
 

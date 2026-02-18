@@ -12,8 +12,6 @@ import "./protocols/index.js";
 import "./filters/index.js";
 import "./engine/impl/index.js";
 import * as rest from "./controllers/rest/index.js";
-import * as views from "./controllers/views/index.js";
-import * as secureViews from "./controllers/secureViews/index.js";
 // import * as secureViews from "./controllers/secureViews";
 // custom index imports end
 import { config } from "./config/index.js";
@@ -34,7 +32,6 @@ import compression from "compression";
 import GlobalEnv from "./model/constants/GlobalEnv.js";
 import path from "node:path";
 import rateLimit from "express-rate-limit";
-import { LRUCache } from "lru-cache";
 import { fileURLToPath } from "node:url";
 import { ExpressRateLimitTypeOrmStore } from "typeorm-rate-limit-store";
 import { ExpressRateLimitStoreModel } from "./model/db/ExpressRateLimitStore.model.js";
@@ -65,8 +62,6 @@ const opts: Partial<TsED.Configuration> = {
     },
     mount: {
         "/rest": [...Object.values(rest)],
-        "/": [...Object.values(views)],
-        "/secure": [...Object.values(secureViews)],
     },
     statics: {
         "/assets": [
@@ -93,7 +88,8 @@ const opts: Partial<TsED.Configuration> = {
     },
     socketIO: {
         cors: {
-            origin: process.env.BASE_URL,
+            origin: [process.env.BASE_URL, process.env.FRONTEND_URL].filter(Boolean) as string[],
+            credentials: true,
         },
     },
     middlewares: [
@@ -107,7 +103,8 @@ const opts: Partial<TsED.Configuration> = {
             },
         }),
         cors({
-            origin: process.env.BASE_URL,
+            origin: [process.env.BASE_URL, process.env.FRONTEND_URL].filter(Boolean) as string[],
+            credentials: true,
             exposedHeaders: ["Location", "Content-Disposition"],
         }),
         cookieParser(),
@@ -118,19 +115,6 @@ const opts: Partial<TsED.Configuration> = {
         }),
         compression(),
     ],
-    views: {
-        root: `${path.dirname(fileURLToPath(import.meta.url))}/public`,
-        viewEngine: "ejs",
-        extensions: {
-            ejs: "ejs",
-        },
-        options: {
-            ejs: {
-                rmWhitespace: false,
-                cache: isProduction ? LRUCache : null,
-            },
-        },
-    },
     exclude: ["**/*.spec.ts"],
 };
 
@@ -173,7 +157,7 @@ export class Server implements BeforeRoutesInit {
                         httpOnly: true,
                         maxAge: 86400000,
                         secure: this.https === "true",
-                        sameSite: "strict",
+                        sameSite: "lax",
                     },
                 }),
             );

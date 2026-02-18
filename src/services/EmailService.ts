@@ -7,7 +7,7 @@ import GlobalEnv from "../model/constants/GlobalEnv.js";
 import { createTestAccount, createTransport, Transporter } from "nodemailer";
 import { isProduction } from "../config/envs/index.js";
 import { BadRequest } from "@tsed/exceptions";
-import EMAIL_TEMPLATE from "../model/constants/EmailTemplate.js";
+import EmailTemplate from "../model/constants/EmailTemplate.js";
 
 @Service()
 export class EmailService implements AfterInit {
@@ -37,15 +37,15 @@ export class EmailService implements AfterInit {
     @Constant(GlobalEnv.REPLY_TO)
     private readonly smtpReplyTo: string;
 
-    private readonly emailTemplateMapping: Record<EMAIL_TEMPLATE, { subject: string; body?: string }> = {
-        [EMAIL_TEMPLATE.DELETED]: {
+    private readonly emailTemplateMapping: Record<EmailTemplate, { subject: string; body?: string }> = {
+        [EmailTemplate.DELETED]: {
             body: "Your submission has been rejected, please submit a different WAD or level",
             subject: "Submission rejected",
         },
-        [EMAIL_TEMPLATE.REJECTED]: {
+        [EmailTemplate.REJECTED]: {
             subject: "Submission rejected",
         },
-        [EMAIL_TEMPLATE.NEW_SUBMISSION]: {
+        [EmailTemplate.NEW_SUBMISSION]: {
             subject: "Viewer-Submitted Levels Confirmation",
         },
     };
@@ -54,7 +54,7 @@ export class EmailService implements AfterInit {
         this.emailTransport = await this.getTransport();
     }
 
-    public async sendMail(to: string, template: EMAIL_TEMPLATE, body?: string): Promise<SentMessageInfo> {
+    public async sendMail(to: string, template: EmailTemplate, body?: string): Promise<SentMessageInfo> {
         const env: Envelope = {
             from: this.smtpFrom,
             to,
