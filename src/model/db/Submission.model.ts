@@ -141,6 +141,17 @@ export class SubmissionModel extends AbstractModel {
     @Nullable(String)
     public info: string | null;
 
+    @Column({
+        nullable: true,
+        type: "text",
+    })
+    @Name("lookingFor")
+    @Description("What the submitter is looking for from the streamer")
+    @Example("feedback on difficulty balance")
+    @Example("strategies for the final boss")
+    @Nullable(String)
+    public lookingFor: string | null;
+
     @Name("submissionRoundId")
     @Description("The submission round this entry belongs to")
     @Example("1")
@@ -317,6 +328,9 @@ export class SubmissionModel extends AbstractModel {
         }
         if (this.info) {
             this.info = xss(this.info);
+        }
+        if (this.lookingFor) {
+            this.lookingFor = xss(this.lookingFor);
         }
     }
 }

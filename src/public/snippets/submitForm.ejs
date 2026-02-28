@@ -5,8 +5,8 @@ function mapEngine(value) {
             return "I don't know";
         case "NA":
             return "N/A";
-        case "GZDoom":
-            return "GZDoom";
+        case "UZDoom":
+            return "UZDoom";
         case "Doom":
             return "Ultimate Doom";
         case "DoomII":
@@ -117,7 +117,7 @@ function getHtml() {
     </div>
     <% if(!isAdmin){ %>
         <div class="mb-3 hidden" id="gzActionsContainer">
-            <label class="d-block mb-2">If GZDoom is required, am I allowed to jump, crouch, or mouse-look?</label>
+            <label class="d-block mb-2">If UZDoom is required, am I allowed to jump, crouch, or mouse-look?</label>
             <% for(const key in model.gzActions) {
                 const value = model.gzActions[key];
                 const display = mapGzActions(value);
@@ -168,6 +168,10 @@ function getHtml() {
                 inspiration,
                 or about yourself -- whatever you want. Keep it somewhat short as I need to memorise it.</label>
             <textarea name="info" class="form-control" id="extraInfo" rows="3" maxlength="4096"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="lookingFor" class="form-label">Are you looking for anything from me in particular? Examples: feedback/criticism/strategies for certain fights. Leave empty if you just want me to do commentary and have a good time.</label>
+            <textarea name="lookingFor" class="form-control" id="lookingFor" rows="3" maxlength="4096"></textarea>
         </div>
     <% } %>
     <% if(!isAdmin){ %>

@@ -737,7 +737,7 @@
             return false;
         }
 
-        function showSubmissionInfoModel(id, wadName, wadLevel, submitterName, wadEngine, gzDoomAction, author, distributable, info, email, downloadUrl, format, playTestEngine) {
+        function showSubmissionInfoModel(id, wadName, wadLevel, submitterName, wadEngine, gzDoomAction, author, distributable, info, email, downloadUrl, format, playTestEngine, lookingFor) {
             const modalContentWrapper = document.getElementById("submissionInfoContent");
             const modalTitle = document.getElementById("submissionInfoModalLabel");
 
@@ -750,11 +750,12 @@
                 <p>Wad Name: ${wadName}</p>
                 <p>Wad Level: ${wadLevel}</p>
                 <p>Wad Engine: ${wadEngine}</p>
-                ${gzDoomAction ? `<p>GZDoom actions: ${gzDoomAction}</p>` : ""}
+                ${gzDoomAction ? `<p>UZDoom actions: ${gzDoomAction}</p>` : ""}
                 ${submitterName ? `<p>Submitter name: ${submitterName}</p>` : ""}
                 <p>Submitter created this map: ${author}</p>
                 <p>Distributable: ${distributable}</p>
                 ${info ? `Info: <pre style="white-space: pre-wrap; max-height: 200px;">${info}</pre>` : ""}
+                ${lookingFor ? `Looking for: <pre style="white-space: pre-wrap; max-height: 200px;">${lookingFor}</pre>` : ""}
                 <p>Email: <span class="spoiler">${email}</span></p>
                 <p>Record format: ${format}</p>
                 <p>Play tested on: ${playTestEngine ?? "N/A"}</p>
@@ -1578,7 +1579,7 @@
                                 alert(e.message);
                                 return;
                             }
-                            showSubmissionInfoModel(entry.id, entry.WADName, entry.level, entry.authorName, selectedRow[5], selectedRow[6], entry.author, entry.distributable, entry.info, entry.email, selectedRow[10], entry.recordedFormat, entry.playTestEngine);
+                            showSubmissionInfoModel(entry.id, entry.WADName, entry.level, entry.authorName, selectedRow[5], selectedRow[6], entry.author, entry.distributable, entry.info, entry.email, selectedRow[10], entry.recordedFormat, entry.playTestEngine, entry.lookingFor);
                         }
                     },
                     {
