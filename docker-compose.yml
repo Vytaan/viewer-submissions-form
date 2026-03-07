@@ -14,5 +14,16 @@ services:
       - sqlite-data:/data
     restart: unless-stopped
 
+  vytaan-bot:
+    build:
+      context: ./bot
+    ports:
+      - "8442:3000"
+    env_file:
+      - ./bot/.env
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+
 volumes:
   sqlite-data:
